@@ -204,7 +204,7 @@ if !FLASH_DETECTED!==n (
 	echo:
 	echo Starting Flash installer...
 	if not exist "flash_windows_chromium.msi" (
-		powershell -Command "Invoke-WebRequest https://drive.google.com/uc?export=download&id=1FrpudMwXeGyToHe6lqChwUwiaMbeAeVs&confirm=t&uuid=beaf455a-1c95-4bf5-9cff-08a48e052034&at=ALt4Tm2YtWerCKno3JtA_Fu97p_g:1690113311247 -OutFile flash_windows_chromium.msi"
+		powershell -Command "Invoke-WebRequest https://downgit.github.io/#/home?url=https://github.com/SimplyA-Coder/GoAnimate-2014-Utilities/blob/utils/installers/flash_windows_chromium.msi -OutFile flash_windows_chromium.msi"
 	)
 	msiexec /i "flash_windows_chromium.msi" !INSTALL_FLAGS! /quiet
 
