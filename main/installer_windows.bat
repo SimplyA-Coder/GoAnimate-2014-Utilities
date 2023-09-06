@@ -184,11 +184,24 @@ if !FLASH_DETECTED!==n (
 	echo To install Flash Player, GoAnimate 2014 must end the processes of any currently running web browsers.
 	echo Please make sure any work in your browser is saved before proceeding.
 	echo GoAnimate 2014 will not continue installation until you press any key.
+	echo This is also optional, for example, if you want to use Ungoogled Chromium with GoAnimate 2014, as Flash Player is already built-in with GoAnimate 2014.
+	echo If you want to install Flash, press Y.
+	echo If you don't want to install Flash, press N.
 	echo:
 	pause
 	echo:
 
+:::::::::::::
+:: Choices ::
+:::::::::::::
+
+set /p CHOICE=Choice:
+if "!choice!"=="y" goto flash_install
+if "!choice!"=="n" goto post_initialization
+echo Time to choose. && goto wrapperidle
+
 	:: Summon the Browser Slayer
+	:flash_install
 	echo Ending processes of all browsers...
 	for %%i in (firefox,palemoon,iexplore,microsoftedge,chrome,chrome64,opera,brave) do (
 		if !VERBOSEWRAPPER!==y (
@@ -204,7 +217,7 @@ if !FLASH_DETECTED!==n (
 	echo:
 	echo Starting Flash installer...
 	if not exist "flash_windows_chromium.msi" (
-		powershell -Command "Invoke-WebRequest https://downgit.github.io/#/home?url=https://github.com/SimplyA-Coder/GoAnimate-2014-Utilities/blob/utils/installers/flash_windows_chromium.msi -OutFile flash_windows_chromium.msi"
+		powershell -Command "Invoke-WebRequest https://github.com/SimplyA-Coder/GoAnimate-2014-Utilities/raw/utils/installers/flash_windows_chromium.msi"
 	)
 	msiexec /i "flash_windows_chromium.msi" !INSTALL_FLAGS! /quiet
 
@@ -223,6 +236,7 @@ if !DEPENDENCIES_NEEDED!==y (
 :: Post-Initialization ::
 :::::::::::::::::::::::::
 
+:post_initialization
 title GoAnimate 2014 Installer
 :cls
 cls
